@@ -3,7 +3,7 @@ package com.acidtango.itxbackend.products.infrastructure.repositories;
 import com.acidtango.itxbackend.products.domain.Product;
 import com.acidtango.itxbackend.products.domain.ProductRepository;
 import com.acidtango.itxbackend.products.domain.Products;
-import com.acidtango.itxbackend.products.infrastructure.entities.ProductEntity;
+import com.acidtango.itxbackend.products.infrastructure.mappers.ProductMapper;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,9 +21,9 @@ public class ProductRepositoryMemory implements ProductRepository {
     @Override
     public Product create(Product product) {
         product.setProductId(UUID.randomUUID().toString());
-        var entity = ProductEntity.fromDomain(product);
+        var entity = ProductMapper.MAPPER.fromDomainObject(product);
 
-        return entity.toDomain();
+        return ProductMapper.MAPPER.toDomain(entity);
     }
 
     @Override

@@ -14,11 +14,6 @@ public class ProductResponseDTO {
     private String name;
     private List<Variant> variants;
 
-
-    public static ProductResponseDTO serialize(Product product) {
-        return new ProductResponseDTO(product.getProductId(), product.getName(), product.getVariants());
-    }
-
 };
 
 

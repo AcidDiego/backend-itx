@@ -3,6 +3,7 @@ package com.acidtango.itxbackend.products.infrastructure.controllers;
 import com.acidtango.itxbackend.products.application.useCases.ProductLister;
 import com.acidtango.itxbackend.products.infrastructure.controllers.dtos.ProductResponseDTO;
 import com.acidtango.itxbackend.products.infrastructure.controllers.dtos.ProductResponseListDTO;
+import com.acidtango.itxbackend.products.infrastructure.mappers.ProductMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,6 @@ public class GetProductsController {
             @RequestParam(name = "salesUnitsWeight", defaultValue = "1") Integer salesUnitsWeight
     ) {
         var products = productLister.execute(stockRatioWeight, salesUnitsWeight);
-        return ProductResponseListDTO.serialize(products.getItems().stream().map(ProductResponseDTO::serialize).toList());
+        return ProductResponseListDTO.serialize(products.getItems().stream().map(ProductMapper.MAPPER::toProductResponseDTO).toList());
     }
 }

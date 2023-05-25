@@ -46,7 +46,7 @@ public class ProductListerTests {
                 .port(port)
                 .get("/products").as(ProductResponseListDTO.class);
 
-        assertThat(products.items()).hasSize(6);
+        assertThat(products.getItems()).hasSize(6);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class ProductListerTests {
                 .queryParam("salesUnitsWeight", 1)
                 .get("/products").as(ProductResponseListDTO.class);
 
-        assertThat(products.items()).hasSize(6);
-        assertThat(products.items().get(0).getId()).isEqualTo(maxStockId);
+        assertThat(products.getItems()).hasSize(6);
+        assertThat(products.getItems().get(0).getId()).isEqualTo(maxStockId);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ProductListerTests {
                 .queryParam("salesUnitsWeight", 0)
                 .get("/products").as(ProductResponseListDTO.class);
 
-        assertThat(products.items()).hasSize(6);
-        assertThat(products.items().get(0).getId()).isEqualTo(maxSalesId);
+        assertThat(products.getItems()).hasSize(6);
+        assertThat(products.getItems().get(0).getId()).isEqualTo(maxSalesId);
     }
 }
